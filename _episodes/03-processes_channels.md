@@ -167,18 +167,18 @@ to store the `.dat` output in `$PWD`.  We can leave them in the work directories
 
 ```
 output:
-  path('output.dat') into wordcount_output_ch
+  path("${queryFile.basenName}.dat") into wordcount_output_ch
 ```
 
 The input for `testZipf`` will use the `collect()` method of the channel:
 
 ```
 input:
-  path('*.dat') from wordcount_output_ch.collect()
+  val x from wordcount_output_ch.collect()
   
   """
   module load python
-  python3 zipf_test.py *.dat > $PWD/results.txt
+  python3 zipf_test.py ${x.join(" ")} > $PWD/results.txt
   """
 ```
 
