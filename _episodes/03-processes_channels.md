@@ -74,7 +74,7 @@ Notice the `4 of 4`.  This has run the process 4 times for each of the 4 books w
 > {: .solution}
 {: .challenge}
 
-To give the output name something sensible we could use `$PWD/${queryFile.baseName}.dat` as the output.  Try it and see if it
+To give the output name something sensible we could use `${queryFile.baseName}.dat` as the output.  Try it and see if it
 works and outputs the files in the current directory.
 
 > ## Bioinformatics specific functions

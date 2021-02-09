@@ -97,21 +97,24 @@ $ nextflow run main.nf -profile slurm
 Or the whole definition can be defined within the process we can define the `executor` and `cpus`
 
 ```
-  executor 'slurm'
-  cpus 2
-
+  executor='slurm'
+  cpus=2
 ```
+
+You can also define the profile on the command line but add to existing profile such as using `-profile slurm` when
+running but setting `cpus = 2` in the process.  Note for MPI codes you would need to put `clusterOptions = '-n 16'` for
+a 16 tasks to use for MPI.  Be careful not to override options such as `clusterOptions` that define the project code.
 
 ## Manifest
 
 A manifest can describe the workflow and provide a Github location.  For example
 ```
 manifest {
-  name = 'ARCCA/intro_nextflow'
+  name = 'ARCCA/intro_nextflow_example'
   author = 'Thomas Green'
-  homepage = 'www.cardiff.ac.uk/arcca'
+  homePage = 'www.cardiff.ac.uk/arcca'
   description = 'Nextflow tutorial'
-  mainScript = 'files/nextflow_tutorial/.main.nf'
+  mainScript = 'main.nf'
   version = '1.0.0'
 }
 ```
@@ -121,23 +124,45 @@ Where the `name` is the location on Github and `mainScript` is the location of t
 Try:
 
 ```
-$ nextflow run ARCCA/intro_nextflow --help
+$ nextflow run ARCCA/intro_nextflow_example --help
 ```
+{: .language-bash}
+
+To update from remote locations you can run:
+
+```
+$ nextflow pull ARCCA/intro_nextflow_example
+```
+{: .language-bash}
+
+To see existing remote locations downloaded:
+
+```
+$ nextflow list
+```
+{: .language-bash}
+
+Finally, to print information about remote you can:
+
+```
+$ nextflow show ARCCA/intro_nextflow_example
+```
+{: .language-bash}
 
 ## Labels
 
 Labels allow to select what the process can use from the `nextflow.config` or in our case the options in the Slurm
-profile.
+profile in `./configs/slurm.config`
 
 ```
-profile {
+process {
   executor = 'slurm'
   clusterOptions = '-A scw1001'
   withLabel: python { module = 'python' }
 }
 ```
 
-Defining a process with the above label `python` and will load the `python` module.
+Defining a process with the above `label 'python'` and will load the `python` module.
 
 ## Modules
 
@@ -147,13 +172,11 @@ Modules can also be defined in the process (rather than written in the script) w
 process doSomething {
   module = 'python'
   """
-  python --version
+  python3 --version
   """
 }
 ```
 
 Hopefully the following page has helped you understand the options to dig deeper into your pipeline and maybe make it
-more portable by using labels to select what to do on a platform.
-
-
+more portable by using labels to select what to do on a platform.  Lets move onto running Nextflow on Hawk.
 
