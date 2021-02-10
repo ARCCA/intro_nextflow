@@ -145,7 +145,7 @@ $ nextflow list
 Finally, to print information about remote you can:
 
 ```
-$ nextflow show ARCCA/intro_nextflow_example
+$ nextflow info ARCCA/intro_nextflow_example
 ```
 {: .language-bash}
 

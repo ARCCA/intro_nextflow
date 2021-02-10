@@ -170,7 +170,7 @@ output:
   path("${queryFile.basenName}.dat") into wordcount_output_ch
 ```
 
-The input for `testZipf`` will use the `collect()` method of the channel:
+The input for `testZipf` will use the `collect()` method of the channel:
 
 ```
 input:
