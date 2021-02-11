@@ -18,7 +18,7 @@ code is required to be rebuilt for each operating system and hardware.
 The most common ways to run containers is to either use [Docker](https://www.docker.io) and [Singularity](https://www.sylabs.io).  Docker can suffer from some issues running on a supercomputer cluster, so it may have
 [Singularity](https://www.sylabs.io) installed to allow containers to run.  We will be using **Singularity**.
 
-> # Singularity training
+> ## Singularity training
 >
 > ARCCA provides a Singularity course if more detailed information how to use Singularity is required.  See list of
 > training courses.
@@ -59,6 +59,9 @@ output.subscribe { print "\n$it\n" }
 
 ```
 
+Note the use of `subscribe` which allows a function to be used to everytime a value is emitted by the source channel.
+
+
 The above should output:
 
 ```
@@ -94,5 +97,10 @@ Notice the change in Python version.
 > {: .solution}
 {: .challenge}
 
+Using Singularity can remove some of the head-aches of making sure the correct software is installed.  If an existing
+pipeline has a container then it should be possible to run it within Singularity inside Nextflow.  Creating your own
+container should also be possible if required to share with others.
 
+Having had a bit of a detour to explore some extra options we now go back to the original workflow and explore a few
+final things with it.
 

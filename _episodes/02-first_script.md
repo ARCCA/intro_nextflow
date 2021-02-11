@@ -47,22 +47,30 @@ Looking line by line:
 ```
 #!/usr/bin/env nextflow
 ```
+{: .source}
+
 This is required to tell Nextflow it is a nextflow script.
 
 ```
 wordcount="wordcount.py"
 ```
+{: .source}
+
 This sets a variable to refer to later.
 
 ```
 params.query="books/isles.txt"
 ```
+{: .source}
+
 This is the query we have to find the number of words.  Can be set with the commandline argument when running `nextflow`
 with `--query`.
 
 ```
 println "I will count words of $params.query using $wordcount"
 ```
+{: .source}
+
 This simply prints to screen using the variable and parameter above.
 
 Running the code with:
@@ -111,6 +119,7 @@ params.wordcount = "wordcount.py"
 params.outfile = "isles.dat"
 params.outdir = "$PWD/out_dir"
 ```
+{: .source}
 
 Update the `main.nf` to remove the parameters and variables and use the values from `nextflow.config` in the `println`.  You should end
 up with:
@@ -120,6 +129,7 @@ up with:
 
 println "I will count words of $params.query using $params.wordcount and output to $params.outfile"
 ```
+{: .source}
 
 If this is run again it should output:
 
@@ -142,6 +152,7 @@ Note we do not need to use the `out_dir` parameter yet.
 >   outfile = "isles.dat"
 > }
 > ```
+> {: .source}
 {: .callout}
 
 ## Processes
@@ -167,6 +178,7 @@ Check the code works:
 $ module load python
 $ python3 wordcount.py books/isles.txt isles.dat
 ```
+{: .language-bash}
 
 This should produce a file `isles.dat` with the word counts.
 
@@ -184,6 +196,7 @@ process runWordcount {
 
 }
 ```
+{: .source}
 
 Note the use of `$PWD` to set the fullpath. This is crucial since Nextflow runs the code in another directory.
 
@@ -202,6 +215,7 @@ I will count words of books/isles.txt using wordcount.py and output to isles.dat
 executor >  local (1)
 [38/2f5ad5] process > runWordcount [100%] 1 of 1 ✔
 ```
+{: .output}
 
 The `isles.dat` can be found in `work` directory such as:
 ```
@@ -211,6 +225,7 @@ work
     └── 9a9d076cc092ed99701282d3ee3e9f
         └── isles.dat
 ```
+{: .output}
 
 The unique directories (using hashes) can be resumed by Nextflow.
 
@@ -226,6 +241,7 @@ Instead of hardcoding the arguments in the process, we can use the params and ma
 > > 
 > > Add to `nextflow.config` the parameter `params.app`
 > > Change `python` to be `$params.app`
+> >
 > > ```
 > > params.query = "$PWD/books/isles.txt"
 > > params.wordcount = "$PWD/wordcount.py"
@@ -233,10 +249,13 @@ Instead of hardcoding the arguments in the process, we can use the params and ma
 > > params.outdir = "$PWD/out_dir"
 > > params.app = "python3"
 > > ```
+> > {: .source}
+> >
 > > and the process is modified to be
 > > ```
 > > $params.app $params.wordcount $params.query $params.outfile
 > > ```
+> > {: .source}
 > {: .solution}
 {: .challenge}
 
@@ -249,7 +268,7 @@ In `main.nf` before the process definition the following can be added:
 ```
 def helpMessage() {
   log.info """
-        Usage:
+       Usage:
         The typical command for running the pipeline is as follows:
         nextflow run main.nf --query \$PWD/books/isles.txt --outfile isles.dat
 
@@ -271,6 +290,7 @@ if (params.help) {
     exit 0
 }
 ```
+{: .source}
 
 And add `params.help` to `nextflow.config` to a default value of `false`.  Test the help functionality with:
 ```

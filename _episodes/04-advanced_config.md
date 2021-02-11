@@ -1,7 +1,7 @@
 ---
 title: "Advanced configuration"
 teaching: 15
-exercises: 15
+exercises: 5
 questions:
 - "What functionality and modularity to Nextflow?"
 objectives:
@@ -29,6 +29,7 @@ timeline {
   file = "$params.outdir/timeline.html"
 }
 ```
+{: .source}
 
 Notice the user of `$params.outdir` that can be defined in the `params` section to a default value such as
 `$PWD/out_dir`.
@@ -37,7 +38,7 @@ The timeline will look something like:
 
 ![Timeline of pipeline](../fig/nf_timeline.png "Timeline of pipeline")
 
-Example timeline can be found [timeline.html]({{ site.baseurl }}/files/examples/timeline.html)
+Example timeline can be found [timeline.html]({{site.url}}{{site.baseurl}}/files/lesson_template/examples/timeline.html)
 
 ## Report
 
@@ -49,8 +50,9 @@ report {
   file = "$params.outdir/report.html"
 }
 ```
+{: .source}
 
-Example can be found [report.html]({{ site.baseurl }}/files/examples/report.html)
+Example can be found [report.html]({{site.url}}{{site.baseurl}}/files/lesson_template/examples/report.html)
 
 ## Executors
 
@@ -64,6 +66,7 @@ executor {
   submitRateLimit = '10 sec'
 }
 ```
+{: .source}
 
 ## Profiles
 
@@ -75,6 +78,7 @@ profiles {
   slurm { includeConfig './configs/slurm.config' }
 }
 ```
+{: .source}
 
 and within the `./configs/slurm.config` define the Slurm settings to use:
 
@@ -84,6 +88,7 @@ process {
   clusterOptions = '-A scwXXXX'
 }
 ```
+{: .source}
 
 Where `scwXXXX` is the project code to use.
 
@@ -100,6 +105,7 @@ Or the whole definition can be defined within the process we can define the `exe
   executor='slurm'
   cpus=2
 ```
+{: .source}
 
 You can also define the profile on the command line but add to existing profile such as using `-profile slurm` when
 running but setting `cpus = 2` in the process.  Note for MPI codes you would need to put `clusterOptions = '-n 16'` for
@@ -161,6 +167,7 @@ process {
   withLabel: python { module = 'python' }
 }
 ```
+{: .source}
 
 Defining a process with the above `label 'python'` and will load the `python` module.
 
@@ -176,7 +183,21 @@ process doSomething {
   """
 }
 ```
+{: .source}
+
+## Generate DAG
+
+From the command line a Directed acyclic graph (DAG) can show the dependencies in a nice way.  Run `nextflow` with:
+
+```
+$ nextflow run main.cf -with-dag flowchart.png
+```
+{: .language-bash}
+
+The `flowchart.png` will be created and can be viewed.
 
 Hopefully the following page has helped you understand the options to dig deeper into your pipeline and maybe make it
 more portable by using labels to select what to do on a platform.  Lets move onto running Nextflow on Hawk.
+
+
 

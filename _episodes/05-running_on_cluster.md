@@ -52,7 +52,7 @@ for if GPUs were to be used with `--gres=gpu`
 > > ## Solution
 > > 
 > > Following the advice you should be able to use many of the defaults since we are not using parallel code so `ncpus =
-> > 1` will be the default.  Just make sure `clusterOptions = scwXXXX` to specify your project code.
+> > 1` will be the default.  Just make sure `clusterOptions = "-A scwXXXX"` to specify your project code.
 > {: .solution}
 {: .challenge}
 
@@ -119,7 +119,6 @@ module 'python:singularity'
 ```
 
 This has hopefully given you some pointers to configure your Nextflow environment for the cluster.  One aspect of the
-cluster is the use of Singularity to simplify sharing of specific builds of code. Nextflow support the tool
+cluster is the use of [Singularity](https://www.sylabs.io) to simplify sharing of specific builds of code. Nextflow support the tool
 **Singularity** to manage this feature which will shall look at in the next section.
 
-## 

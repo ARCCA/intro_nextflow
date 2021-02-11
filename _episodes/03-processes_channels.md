@@ -1,8 +1,8 @@
 ---
 
 title: "Processes and channels"
-teaching: 15
-exercises: 15
+teaching: 30
+exercises: 10
 questions:
 - "How do I pass information from processes?"
 objectives:
@@ -32,8 +32,9 @@ Channel
   .fromPath(params.query)
   .into{queryFile_ch}
 ```
+{: .source}
 
-Notice the use of methods `(...)` and closures `{...}
+Notice the use of methods `(...)` and closures `{...}`
 
 We can now add the `channel` as an input inside the process
 
@@ -41,6 +42,7 @@ We can now add the `channel` as an input inside the process
 input:
   path(queryFile) from queryFile_ch
 ```
+{: .source}
 
 And change the process to include `$queryFile` instead of `$params.query`.  This will provide no real advantage over the
 current code but if we run with an *escaped* wildcard you can process as many files in the directory as required:
@@ -60,6 +62,7 @@ I will count words of /nfshome/store01/users/c.sistg1/nf_test/nextflow-lesson/bo
 executor >  local (4)
 [aa/dbc648] process > runWordcount (2) [100%] 4 of 4 ✔
 ```
+{: .output}
 
 Notice the `4 of 4`.  This has run the process 4 times for each of the 4 books we have available.
 
@@ -89,6 +92,7 @@ works and outputs the files in the current directory.
 >   .splitFasta(by: 1, file:true)
 >   .into { queryFile_ch }
 > ```
+> {: .source}
 >
 > This will split the fasta file into chunks of size 1 and create individual processes for each chunk.  However you will
 > need to join these back again.  Nextflow comes to the rescue with:
@@ -97,6 +101,7 @@ works and outputs the files in the current directory.
 > output:
 >   path(params.outFileName) into blast_output_ch
 > ```
+> {: .source}
 > 
 > And after the process use the channel
 > 
@@ -150,7 +155,8 @@ This can be added as a process with:
 
 ```
 process testZipf {
-
+  
+  script:
   '''
   module load python
   python3 zipf_test.py abyss.dat isles.dat last.dat > results.txt
@@ -158,6 +164,7 @@ process testZipf {
 
 }
 ```
+{: .source}
 
 However we have to define the inputs.
 
@@ -169,6 +176,7 @@ to store the `.dat` output in `$PWD`.  We can leave them in the work directories
 output:
   path("${queryFile.basenName}.dat") into wordcount_output_ch
 ```
+{: .source}
 
 The input for `testZipf` will use the `collect()` method of the channel:
 
@@ -181,6 +189,7 @@ input:
   python3 zipf_test.py ${x.join(" ")} > $PWD/results.txt
   """
 ```
+{: .source}
 
 Lets run it and see what happens.
 
@@ -201,8 +210,9 @@ available
 output from a process.
 
 ```
-publishdir "$params.outdir"
+publishDir "$params.outdir"
 ```
+{: .source}
 
 By defining the output for the process it will know to copy the data there.
 
@@ -217,6 +227,7 @@ By defining the output for the process it will know to copy the data there.
 > > ```
 > > publishDir "$params.outdir"
 > > ```
+> > {: .source}
 > >
 > > Then define an output that will be available in `publishDir`.
 > > 
@@ -224,6 +235,7 @@ By defining the output for the process it will know to copy the data there.
 > > output:
 > >   path('results.txt')
 > > ```
+> > {: .source}
 > {: .solution}
 {: .challenge}
 
