@@ -30,7 +30,7 @@ transform values in channels.  For example we can add a channel to input many fi
 ```
 Channel
   .fromPath(params.query)
-  .into{queryFile_ch}
+  .set{queryFile_ch}
 ```
 {: .source}
 
@@ -90,7 +90,7 @@ works and outputs the files in the current directory.
 > Channel
 >   .frompath(params.query)
 >   .splitFasta(by: 1, file:true)
->   .into { queryFile_ch }
+>   .set { queryFile_ch }
 > ```
 > {: .source}
 >

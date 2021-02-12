@@ -14,19 +14,21 @@ keypoints:
 We should now be comfortable running on a single local machine such as the login node.  To use the real power of a
 supercomputer cluster we should make sure each process is given the required resources.
 
-In the previous section we encountered the concept of a profile.  Lets look at that again.  Lets ignore the
+In the previous section we encountered the concept of a profile.  Lets look at that again but call the profile `cluster`.  Lets ignore the
 `includeConfig` command for now.
 
 ```
 profiles {
-  slurm {
-    executor = 'slurm'
-    clusterOptions = '-A scw1001'
+  cluster {
+    process {
+      executor = 'slurm'
+      clusterOptions = '-A scw1001'
+    }
   }
 }
 ```
 
-This defines a profile we can use that submits to Slurm using `sbatch` and passes the `clusterOptions`, in this case the
+This defines a profile to set options in a `process`, this submits to Slurm using `sbatch` and passes the `clusterOptions`, in this case the
 project code used to track the work.
 
 ## Specifying resource
@@ -43,6 +45,13 @@ following available:
 As you can see most of the usual subjects are there, however if MPI jobs were ever run inside Nextflow the
 `clusterOptions` would need to be used to define the number of MPI tasks with `-n` and the `--ntasks-per-node`.  Same
 for if GPUs were to be used with `--gres=gpu`
+
+To submit to Slurm we can run the following:
+
+```
+$ nextflow run main.nf -profile cluster
+```
+{: .language-bash}
 
 > ## Submission to Slurm
 >
