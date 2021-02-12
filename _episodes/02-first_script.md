@@ -283,7 +283,6 @@ def helpMessage() {
          --help                        This usage statement.
         """
 }
-
 // Show help message
 if (params.help) {
     helpMessage()

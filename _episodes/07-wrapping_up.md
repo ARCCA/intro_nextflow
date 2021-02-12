@@ -6,7 +6,7 @@ questions:
 - "Where do I go now?"
 objectives:
 - "Understand the basics in Nextflow pipelines and the options available."
-- "Understand the next steps required.
+- "Understand the next steps required."
 keypoints:
 - "Ask for help and support if you require assistance in writing pipelines on the supercomputer.  The more we know people using it the better."
 ---
