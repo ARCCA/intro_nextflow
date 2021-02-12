@@ -15,7 +15,7 @@ keypoints:
 
 Using the `-with-dag` option we can see the final flowchart
 
-![DAG of pipeline](../fig/flowchart_complete.png "DAG of pipeline")
+![DAG of pipeline](../fig/flowchart-complete.png "DAG of pipeline")
 
 This doesnt show the particular runtime options but the raw dependency of the given processes in the Nextflow script.
 
