@@ -49,6 +49,7 @@ long, that I scarcely remember how the wish was originally excited; and
 was in the Autumn of the year 1773 induced to undertake the journey, by
 finding in Mr. Boswell a companion, whose acuteness would help my
 ```
+{: .source}
 
 Our directory has the Python scripts and data files we
 we will be working with:

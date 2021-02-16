@@ -124,6 +124,7 @@ manifest {
   version = '1.0.0'
 }
 ```
+{: .source}
 
 Where the `name` is the location on Github and `mainScript` is the location of the file (default in `main.nf`).
 

@@ -109,6 +109,7 @@ works and outputs the files in the current directory.
 > blast_output_ch
 >   .collectFile(name: 'combined.txt', storeDir: $PWD)
 > ```
+> {: .source}
 {: .callout}
 
 ## Adding more processes

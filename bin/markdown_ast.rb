@@ -7,6 +7,6 @@ require 'kramdown'
 require 'json'
 
 markdown = $stdin.read
-doc = Kramdown::Document.new(markdown)
+doc = Kramdown::Document.new(markdown, input: 'GFM', hard_wrap: false)
 tree = doc.to_hash_a_s_t
 puts JSON.pretty_generate(tree)

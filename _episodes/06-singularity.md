@@ -38,6 +38,7 @@ profiles {
   }
 }
 ```
+{: .source}
 
 To specify the container to use we can specify it within the `process` in our pipeline.
 
@@ -58,6 +59,7 @@ process runPython {
 output.subscribe { print "\n$it\n" }
 
 ```
+{: .source}
 
 Note the use of `subscribe` which allows a function to be used to everytime a value is emitted by the source channel.
 

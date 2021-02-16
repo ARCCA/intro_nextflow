@@ -27,6 +27,7 @@ profiles {
   }
 }
 ```
+{: .source}
 
 This defines a profile to set options in a `process`, this submits to Slurm using `sbatch` and passes the `clusterOptions`, in this case the
 project code used to track the work.
@@ -73,6 +74,7 @@ environment variable (not very portable) or by configuration variable.  In `next
 ```
 workDir = "/scratch/$USER/nextflow/work"
 ```
+{: .source}
 
 This will set a location on `/scratch` to perform the actual work.
 
@@ -82,6 +84,7 @@ by specifying the copy mode.
 ```
 publishDir "$params.outdir", mode: 'copy'
 ```
+{: .source}
 
 > ## Filesystems
 >
@@ -96,12 +99,14 @@ publishDir "$params.outdir", mode: 'copy'
 > > ```
 > > workDir = "/scratch/$USER/nextflow/work"
 > > ```
+> > {: .source}
 > >
 > > In `main.nf`:
 > >
 > > ```
 > > publishDir "$params.outdir", mode: 'copy'
 > > ```
+> > {: .source}
 > {: .solution}
 {: .challenge}
 
@@ -113,6 +118,7 @@ by Nextflow before the script is run using the `module` directive.
 ```
 module 'python'
 ```
+{: .source}
 
 This will load the `python` module which can be loaded normally with
 
@@ -126,6 +132,7 @@ To load multiple modules such as `python` and `singularity` separate with a colo
 ```
 module 'python:singularity'
 ```
+{: .source}
 
 This has hopefully given you some pointers to configure your Nextflow environment for the cluster.  One aspect of the
 cluster is the use of [Singularity](https://www.sylabs.io) to simplify sharing of specific builds of code. Nextflow support the tool
