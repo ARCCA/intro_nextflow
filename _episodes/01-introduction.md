@@ -19,10 +19,11 @@ seeing the frequency of various words in various books.
 > ## Files
 > 
 > Files for this section are available in the Github repository or available by downloading the zip or tar file, e.g.:
-> > ```bash
-> > $ curl -O https://raw.githubusercontent.com/ARCCA/intro_nextflow/gh-pages/files/nextflow-lesson.zip
-> > ```
-> > {: .language-bash}
+> 
+> ```
+> $ curl -O https://raw.githubusercontent.com/ARCCA/intro_nextflow/gh-pages/files/nextflow-lesson.zip
+> ```
+> {: .language-bash}
 {: .callout}
 
 We've compiled our raw data i.e. the books we want to analyse

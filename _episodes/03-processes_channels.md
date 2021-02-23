@@ -50,7 +50,7 @@ current code but if we run with an *escaped* wildcard you can process as many fi
 ```
 $ nextflow run main.nf --query $PWD/books/\*.txt
 ```
-{: .bash-language}
+{: .language-bash}
 
 
 The output should now produce:
@@ -150,7 +150,7 @@ the command line.
 ```
 $ python zipf_test.py abyss.dat isles.dat last.dat > results.txt
 ```
-{: .bash-language}
+{: .language-bash}
 
 This can be added as a process with:
 

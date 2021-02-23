@@ -97,7 +97,7 @@ This can be used on the command line:
 ```
 $ nextflow run main.nf -profile slurm
 ```
-{: .bash-language}
+{: .language-bash}
 
 Or the whole definition can be defined within the process we can define the `executor` and `cpus`
 
