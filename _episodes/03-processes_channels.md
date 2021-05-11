@@ -158,10 +158,10 @@ This can be added as a process with:
 process testZipf {
   
   script:
-  '''
+  """
   module load python
   python3 zipf_test.py abyss.dat isles.dat last.dat > results.txt
-  '''
+  """
 
 }
 ```
@@ -175,7 +175,7 @@ to store the `.dat` output in `$PWD`.  We can leave them in the work directories
 
 ```
 output:
-  path("${queryFile.basenName}.dat") into wordcount_output_ch
+  path("${queryFile.baseName}.dat") into wordcount_output_ch
 ```
 {: .source}
 
@@ -184,7 +184,8 @@ The input for `testZipf` will use the `collect()` method of the channel:
 ```
 input:
   val x from wordcount_output_ch.collect()
-  
+
+script:
   """
   module load python
   python3 zipf_test.py ${x.join(" ")} > $PWD/results.txt
