@@ -186,6 +186,56 @@ process doSomething {
 ```
 {: .source}
 
+## Conda
+
+Conda is a userful software installation and management system and commonly used by various topics.  There are a number of ways to use it.
+
+Specify the packages.
+
+```
+process doSomething {
+  conda 'bwa samtools multiqc'
+  
+  '''
+  bwa ...
+  '''
+```
+
+Specify an environment.
+
+```
+process doSomething {
+  conda '/some/path/my-env.yaml'
+
+  '''
+  command ...
+  '''
+```
+
+```
+process doSomething {
+  conda '/some/path/conda/environment'
+  
+  '''
+  command ...
+  '''
+```
+
+It is recommended to use conda inside a profile due to there might be another way to access the software such as via docker or singularity.
+
+```
+profiles {
+  conda {
+    process.conda = 'samtools'
+  }
+
+  docker {
+    process.container = 'biocontainers/samtools'
+    docker.enabled = true
+  }
+}
+```
+
 ## Generate DAG
 
 From the command line a Directed acyclic graph (DAG) can show the dependencies in a nice way.  Run `nextflow` with:
