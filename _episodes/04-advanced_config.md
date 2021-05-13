@@ -212,6 +212,8 @@ process doSomething {
   '''
 ```
 
+Specify a pre-existing installed environment.
+
 ```
 process doSomething {
   conda '/some/path/conda/environment'
