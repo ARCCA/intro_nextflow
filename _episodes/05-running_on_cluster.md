@@ -14,12 +14,31 @@ keypoints:
 We should now be comfortable running on a single local machine such as the login node.  To use the real power of a
 supercomputer cluster we should make sure each process is given the required resources.
 
-In the previous section we encountered the concept of a profile.  Lets look at that again but call the profile `cluster`.  Lets ignore the
-`includeConfig` command for now.
+## Executor
+
+Firstly the executor scope provides control how things are run.  For example for slurm we can set a limit to the number of jobs in the queue
+
+```
+executor {
+    name = 'slurm'
+    queueSize = 20
+    pollInterval = '30 sec'
+}
+```
+
+## Profile
+
+In the previous section we encountered the concept of a profile.  Lets look at that again but call the profile `cluster` and include executor and process.  
+Lets ignore the `includeConfig` command for now.
 
 ```
 profiles {
   cluster {
+    executor {
+      name = 'slurm'
+      queueSize = 20
+      pollInterval = '30 sec'
+    }
     process {
       executor = 'slurm'
       clusterOptions = '-A scw1001'
@@ -29,7 +48,7 @@ profiles {
 ```
 {: .source}
 
-This defines a profile to set options in a `process`, this submits to Slurm using `sbatch` and passes the `clusterOptions`, in this case the
+This defines a profile to set options in a `executor` and `process`, this submits to Slurm using `sbatch` and passes the `clusterOptions`, in this case the
 project code used to track the work.
 
 ## Specifying resource
@@ -65,6 +84,8 @@ $ nextflow run main.nf -profile cluster
 > > 1` will be the default.  Just make sure `clusterOptions = "-A scwXXXX"` to specify your project code.
 > {: .solution}
 {: .challenge}
+
+
 
 ## Work directory
 
