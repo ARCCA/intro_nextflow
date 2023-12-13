@@ -5,6 +5,8 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 An introduction to [Nextflow](https://nextflow.io/), a tool to enable scalable and reproducible workflows.
 
+This documentation remains for reference but official training material is now recommended at [Nextflow training](https://training.nextflow.io)
+
 <!-- this is an html comment -->
 
 {% comment %} This is a comment in Liquid {% endcomment %}
